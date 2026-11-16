@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <menu-bar />
+    <main>
+      <RouterView />
+    </main>
   </div>
 </template>
 

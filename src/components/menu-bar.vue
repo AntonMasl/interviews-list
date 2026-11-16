@@ -1,6 +1,13 @@
 <template>
   <div class="menu-bar">
-    <menubar :model="menuItems" />
+    <menubar :model="menuItems">
+      <template #item="{ item, props }">
+        <router-link :to="{ name: item.route }" v-bind="props.action">
+          <component :is="item.icon" />
+          <span>{{ item.label }}</span>
+        </router-link>
+      </template>
+    </menubar>
   </div>
 </template>
 
@@ -10,28 +17,29 @@ import { type Component, ref } from "vue"
 import PlusCircle from "@primeicons/vue/plus-circle"
 import List from "@primeicons/vue/list"
 import ChartPie from "@primeicons/vue/chart-pie"
+import { RouteName } from "../router/route-names.ts"
 
-interface MenuItem {
+interface MenuBarItem {
   label: string
   icon: Component
-  path: string
+  route: RouteName
 }
 
-const menuItems = ref<MenuItem[]>([
+const menuItems = ref<MenuBarItem[]>([
   {
     label: "Добавить",
     icon: PlusCircle,
-    path: "/",
+    route: RouteName.Home,
   },
   {
     label: "Список собеседований",
     icon: List,
-    path: "/list",
+    route: RouteName.Interviews,
   },
   {
     label: "Статистика",
     icon: ChartPie,
-    path: "/statistic",
+    route: RouteName.Statistic,
   },
 ])
 </script>
