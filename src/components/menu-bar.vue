@@ -3,9 +3,15 @@
     <menubar :model="menuItems">
       <template #item="{ item, props }">
         <router-link :to="{ name: item.route }" v-bind="props.action">
-          <component :is="item.icon" v-bind="props.icon" />
+          <component :is="item.icon" />
           <span v-bind="props.label">{{ item.label }}</span>
         </router-link>
+      </template>
+      <template #end>
+        <Button severity="secondary" @click="signOut">
+          <SignOut />
+          <span>Выход</span>
+        </Button>
       </template>
     </menubar>
   </div>
@@ -13,12 +19,14 @@
 
 <script setup lang="ts">
 import Menubar from "primevue/menubar"
+import Button from "primevue/button"
 import { type Component, computed, ref } from "vue"
 import PlusCircle from "@primeicons/vue/plus-circle"
 import List from "@primeicons/vue/list"
 import ChartPie from "@primeicons/vue/chart-pie"
 import { RouteName } from "../router/route-names.ts"
 import { useRoute } from "vue-router"
+import SignOut from "@primeicons/vue/sign-out"
 
 interface MenuBarItem {
   label: string
@@ -53,31 +61,39 @@ const menuItems = computed<MenuBarItem[]>(() =>
     class: route.name === menuItem.route ? "menu-bar-item-active" : undefined,
   })),
 )
+
+function signOut() {
+  console.log("signOut")
+}
 </script>
 
 <style lang="scss" scoped>
 .menu-bar {
   --p-menubar-item-label-font-size: 1.5rem;
   --p-menubar-item-icon-size: 1.5rem;
+  --p-icon-size: 1.5rem;
+  --p-button-font-size: 1.5rem;
 
-  :deep(.p-menubar-item.menu-bar-item-active) {
-    // выбранный пункт
-    & > .p-menubar-item-content {
-      color: var(--p-highlight-color);
-      background: var(--p-highlight-background);
-    }
+  :deep(.p-menubar-item) {
+    &.menu-bar-item-active {
+      // выбранный пункт
+      & > .p-menubar-item-content {
+        color: var(--p-highlight-color);
+        background: var(--p-highlight-background);
+      }
 
-    & > .p-menubar-item-content .p-menubar-item-icon {
-      color: var(--p-highlight-color);
-    }
+      & > .p-menubar-item-content .p-menubar-item-icon {
+        color: var(--p-highlight-color);
+      }
 
-    & > .p-menubar-item-content:hover {
-      color: var(--p-highlight-focus-color);
-      background: var(--p-highlight-focus-background);
-    }
+      & > .p-menubar-item-content:hover {
+        color: var(--p-highlight-focus-color);
+        background: var(--p-highlight-focus-background);
+      }
 
-    & > .p-menubar-item-content:hover .p-menubar-item-icon {
-      color: var(--p-highlight-focus-color);
+      & > .p-menubar-item-content:hover .p-menubar-item-icon {
+        color: var(--p-highlight-focus-color);
+      }
     }
   }
 }
