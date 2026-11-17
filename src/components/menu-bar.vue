@@ -60,23 +60,25 @@ const menuItems = computed<MenuBarItem[]>(() =>
   --p-menubar-item-label-font-size: 1.5rem;
   --p-menubar-item-icon-size: 1.5rem;
 
-  // выбранный пункт
-  :deep(.p-menubar-item.menu-bar-item-active > .p-menubar-item-content) {
-    color: var(--p-highlight-color);
-    background: var(--p-highlight-background);
-  }
+  :deep(.p-menubar-item.menu-bar-item-active) {
+    // выбранный пункт
+    & > .p-menubar-item-content {
+      color: var(--p-highlight-color);
+      background: var(--p-highlight-background);
+    }
 
-  :deep(.p-menubar-item.menu-bar-item-active > .p-menubar-item-content .p-menubar-item-icon) {
-    color: var(--p-highlight-color);
-  }
+    & > .p-menubar-item-content .p-menubar-item-icon {
+      color: var(--p-highlight-color);
+    }
 
-  :deep(.p-menubar-item.menu-bar-item-active > .p-menubar-item-content:hover) {
-    color: var(--p-highlight-focus-color);
-    background: var(--p-highlight-focus-background);
-  }
+    & > .p-menubar-item-content:hover {
+      color: var(--p-highlight-focus-color);
+      background: var(--p-highlight-focus-background);
+    }
 
-  :deep(.p-menubar-item.menu-bar-item-active > .p-menubar-item-content:hover .p-menubar-item-icon) {
-    color: var(--p-highlight-focus-color);
+    & > .p-menubar-item-content:hover .p-menubar-item-icon {
+      color: var(--p-highlight-focus-color);
+    }
   }
 }
 </style>
