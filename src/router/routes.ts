@@ -3,6 +3,7 @@ import { paths } from "./paths.ts"
 import { RouteName } from "./route-names.ts"
 import HomeView from "../views/home-view.vue"
 import InterviewsView from "../views/interviews-view.vue"
+import StatisticView from "../views/statistic-view.vue"
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -23,6 +24,6 @@ export const routes: RouteRecordRaw[] = [
   {
     path: paths.Statistic,
     name: RouteName.Statistic,
-    component: HomeView,
+    component: StatisticView,
   },
 ]
