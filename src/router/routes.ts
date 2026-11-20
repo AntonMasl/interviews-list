@@ -4,6 +4,7 @@ import { RouteName } from "./route-names.ts"
 import HomeView from "../views/home-view.vue"
 import InterviewsView from "../views/interviews-view.vue"
 import StatisticView from "../views/statistic-view.vue"
+import AuthView from "../views/auth-view.vue"
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -14,7 +15,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: paths.Auth,
     name: RouteName.Auth,
-    component: HomeView,
+    component: AuthView,
   },
   {
     path: paths.Interviews,
